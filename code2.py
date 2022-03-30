@@ -1,7 +1,7 @@
 import telebot, wikipedia, re
 from telebot import types
 
-bot = telebot.TeleBot('token')
+bot = telebot.TeleBot('5105166295:AAFGJUMjoyNk4jGyQ4ttWzeki6CetsQwHwM')
 
 wikipedia.set_lang("ru")
 
@@ -58,7 +58,7 @@ def help(m, res=False):
 def help(m, res=False):
     markup = types.InlineKeyboardMarkup()
     markup.add(types.InlineKeyboardButton("github", url="https://github.com/r00ky4k/schoolproject"))
-    markup.add(types.InlineKeyboardButton("Диск", url="https://disk.yandex.ru/d/moOtItfYFWOLZQ"))
+    markup.add(types.InlineKeyboardButton("Доклад и презентация", url="https://disk.yandex.ru/d/moOtItfYFWOLZQ"))
     bot.send_message(m.chat.id, lincs, reply_markup=markup)
 
 @bot.message_handler(commands=["help"])
