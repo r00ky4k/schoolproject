@@ -1,20 +1,19 @@
 import telebot, wikipedia, re
 from telebot import types
 
-bot = telebot.TeleBot('token-key')
+bot = telebot.TeleBot('5105166295:AAFGJUMjoyNk4jGyQ4ttWzeki6CetsQwHwM')
 
 wikipedia.set_lang("ru")
 
 
 
 
-anton = 'Антон Стрельцов - создатель бота\nУченик 11А класса\nУвлекаеться спортом\nЛюбимый предмет - физика, а так же нравяться информатика и физкультура.\nЛюбимый вид спорта - футболл\nЛюбит пельмени'
+anton = 'Антон Стрельцов - создатель бота\nУченик 11А класса\nУвлекаеться спортом\nЛюбимый предмет - физика, а так же нравяться информатика и физкультура.\nЛюбимый вид спорта - футбол\nЛюбит пельмени'
 LA = 'Козлова Людмила Александровна - мой класный руководитель\nПреподает физику\nОчень добрый и отзывчивый человек, а главное всегда честный и справедливый'
 AA = 'Cкойбеда Анастасия Анатольевна - учитель с которым я пишу проект\nПреподает информатику\nОчень добрый преподаватель, может пошутить на уроках, всегда поможет если что то не получаеться'
 licey = 'Лицей - крупнейший образовательный комплекс Электрогорска, включающий два здания школы и два детских сада. \nА так же именно здесь работают лучшие учителя Электрогорска'
-inform = "Напиши текст и я найду статью в Википедии\n\nСписок команд: \n/start - старт бота \n/info - информация \n/author - Коротко о создателе проэкта\n/school - о школе\n/teachers - про пару учителей"
-
-
+inform = "Напиши текст и я найду статью в Википедии\n\nСписок команд: \n/start - старт бота \n/info - информация \n/author - Коротко о создателе проэкта\n/school - о школе\n/teachers - про пару учителей\n/links - полезные ссылки"
+lincs = 'полезные ссылки:'
 
 
 def getwiki(s):
@@ -42,7 +41,7 @@ def getwiki(s):
 
 @bot.message_handler(commands=["1"])
 def phone(m, res=False):
-    bot.send_message(m.chat.id, '/info /help /start /1 /teachers /autor ' )
+    bot.send_message(m.chat.id, '/info /help /start /1 /teachers /autor /links' )
 
 @bot.message_handler(commands=["start"])
 def start(m, res=False):
@@ -53,7 +52,14 @@ def help(m, res=False):
     markup = types.InlineKeyboardMarkup()
     markup.add(types.InlineKeyboardButton("Школьная группа", url="https://vk.com/el_licey"))
     markup.add(types.InlineKeyboardButton("Страница Антона", url="https://vk.com/r00ky4k"))
-    bot.send_message(m.chat.id, inform, reply_markup=markup)
+    bot.send_message(m.chat.id, links, reply_markup=markup)
+
+@bot.message_handler(commands=["links"])
+def help(m, res=False):
+    markup = types.InlineKeyboardMarkup()
+    markup.add(types.InlineKeyboardButton("github", url="https://github.com/r00ky4k/schoolproject"))
+    markup.add(types.InlineKeyboardButton("Диск", url="https://vk.com/r00ky4k"))
+    bot.send_message(m.chat.id, lincs, reply_markup=markup)
 
 @bot.message_handler(commands=["help"])
 def help(m, res=False):
