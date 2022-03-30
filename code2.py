@@ -1,17 +1,17 @@
 import telebot, wikipedia, re
 from telebot import types
 
-bot = telebot.TeleBot('token')
+bot = telebot.TeleBot('5105166295:AAFGJUMjoyNk4jGyQ4ttWzeki6CetsQwHwM')
 
 wikipedia.set_lang("ru")
 
 
 
 
-anton = 'Антон Стрельцов - создатель бота\nУченик 11А класса\nУвлекаеться спортом\nЛюбимый предмет - физика, а так же нравяться информатика и физкультура.\nЛюбимый вид спорта - футбол\nЛюбит пельмени'
-LA = 'Козлова Людмила Александровна - мой класный руководитель\nПреподает физику\nОчень добрый и отзывчивый человек, а главное всегда честный и справедливый'
-AA = 'Cкойбеда Анастасия Анатольевна - учитель с которым я пишу проект\nПреподает информатику\nОчень добрый преподаватель, может пошутить на уроках, всегда поможет если что то не получаеться'
-licey = 'Лицей - крупнейший образовательный комплекс Электрогорска, включающий два здания школы и два детских сада. \nА так же именно здесь работают лучшие учителя Электрогорска'
+anton = 'Антон Стрельцов - создатель бота.\nУченик 11"А" класса.\nУвлекается спортом.\nЛюбимый предмет - физика, а так же нравятся информатика и физкультура.\nЛюбимый вид спорта - футбол.\nЛюбит много кушать, особенно пельмени.'
+LA = 'Козлова Людмила Александровна - мой классный руководитель, а также преподаватель урока физики.\nОчень добрый, отзывчивый, честный и справедливый человек.'
+AA = 'Cкойбеда Анастасия Анатольевна - руководитель моего проекта.\nЗаместитель директора, а также учитель информатики.\nОчень добрый, квалифицированный педагог. Всегда поможет, если что-то не получается, поддержит в трудную минуту, а любой сложный материал обьясняет доступным языком. На ее интересные уроки, мы ходим с удовольствием)+_.'
+licey = 'Лицей - крупнейший образовательный комплекс Электрогорска, включающий два здания школы и два детских сада.\nНаши корпуса оснащены всем необходимым для качественной организации образовательного процесса, а образовательную деятельность ведут настоящие профессионалы своего дела!\nИменно здесь работают лучшие учителя города.'
 inform = "Напиши текст и я найду статью в Википедии\n\nСписок команд: \n/start - старт бота \n/info - информация \n/author - Коротко о создателе проэкта\n/school - о школе\n/teachers - про пару учителей\n/links - полезные ссылки"
 lincs = 'полезные ссылки:'
 
@@ -52,13 +52,13 @@ def help(m, res=False):
     markup = types.InlineKeyboardMarkup()
     markup.add(types.InlineKeyboardButton("Школьная группа", url="https://vk.com/el_licey"))
     markup.add(types.InlineKeyboardButton("Страница Антона", url="https://vk.com/r00ky4k"))
-    bot.send_message(m.chat.id, links, reply_markup=markup)
+    bot.send_message(m.chat.id, inform, reply_markup=markup)
 
 @bot.message_handler(commands=["links"])
 def help(m, res=False):
     markup = types.InlineKeyboardMarkup()
     markup.add(types.InlineKeyboardButton("github", url="https://github.com/r00ky4k/schoolproject"))
-    markup.add(types.InlineKeyboardButton("Диск", url="https://vk.com/r00ky4k"))
+    markup.add(types.InlineKeyboardButton("Диск", url="https://disk.yandex.ru/d/moOtItfYFWOLZQ"))
     bot.send_message(m.chat.id, lincs, reply_markup=markup)
 
 @bot.message_handler(commands=["help"])
@@ -84,6 +84,7 @@ def info(m, res=False):
 def info(m, res=False):
     markuph = types.InlineKeyboardMarkup()
     markuph.add(types.InlineKeyboardButton("Страница Анастасии Анатольевны", url="https://vk.com/licey_a"))
+    markuph.add(types.InlineKeyboardButton("Страница Людмилы Александровны", url="https://school.mosreg.ru/user/user.aspx?user=1000000015856"))
     bot.send_message(m.chat.id, "Коротко об моих учителях:\n\n"+LA+"\n\n"+AA, reply_markup=markuph )
 
 @bot.message_handler(content_types=["text"])
@@ -101,10 +102,12 @@ def handle_text(message):
             if message.text =='Анастасия Анатольевна':
                 markuph = types.InlineKeyboardMarkup()
                 markuph.add(types.InlineKeyboardButton("Страница Анастасии Анатольевны", url="https://vk.com/licey_a"))
-                bot.send_message(message.chat.id, AA    , reply_markup=markuph)
+                bot.send_message(message.chat.id, AA , reply_markup=markuph)
             else:
                 if message.text == 'Людмила Александровна':
-                    bot.send_message(message.chat.id,LA)
+                    markupsecond = types.InlineKeyboardMarkup()
+                    markupsecond.add(types.InlineKeyboardButton("Страница Людмилы Александровны", url="https://school.mosreg.ru/user/user.aspx?user=1000000015856"))
+                    bot.send_message(message.chat.id,LA,reply_markup=markupsecond)
                 else:
                     if message.text == 'Стрельцов Антон':
                         markupsecond = types.InlineKeyboardMarkup()
